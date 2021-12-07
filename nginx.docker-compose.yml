@@ -6,16 +6,16 @@ services:
         image: nginx:latest
         ports:
             - "80:80"
-            - "443:443"
         volumes:
             - ./docker/nginx/hosts:/etc/nginx/conf.d
         links:
             - apache2
         depends_on:
-            -  apache2
+            - apache2
 
     apache2:
         container_name: apache2
+        image: apache2image
         build:
             context: .
             dockerfile: docker/apache2/DockerFile

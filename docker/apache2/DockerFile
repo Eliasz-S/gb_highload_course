@@ -1,10 +1,10 @@
 FROM ubuntu:18.04 as base
-### Установка часового пояса
+### Установка часового пояса ###
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 
-### Обновление репозиториев
+### Обновление репозиториев ###
 RUN apt-get update && apt-get upgrade -y
 
 RUN apt-get update && apt-get install -y apache2 apache2-utils curl gnupg wget
@@ -27,11 +27,11 @@ RUN apt-get update && \
 RUN apt-get update -y
 RUN rm -R /etc/apache2/sites-enabled/* /etc/apache2/sites-available/* /var/www/*
 
-EXPOSE 80 443
+# EXPOSE 80 443
 COPY ./docker/apache2/conf/apache2.conf /etc/apache2/apache2.conf
 
 COPY ./docker/apache2/conf/php.ini /etc/php/7.2/apache2/php.ini
-COPY ./docker/apache2/conf/php.ini /etc/php/7.2/cli/php.ini
+# COPY ./docker/apache2/conf/php.ini /etc/php/7.2/cli/php.ini
 
 RUN a2enmod rewrite
 RUN a2enmod ssl
