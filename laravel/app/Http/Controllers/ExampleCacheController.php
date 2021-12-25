@@ -15,6 +15,6 @@ class ExampleCacheController
             die();
         }
 
-        die(var_dump('cache is empty'));
+        die('cache is empty');
     }
 }
